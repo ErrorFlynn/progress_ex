@@ -1,12 +1,14 @@
 #include <nana/gui.hpp>
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/timer.hpp>
+
 #include "progress_ex.hpp"
 
 int main()
 {
 	using namespace nana;
 	using namespace std;
+
 	form fm{API::make_center(400, 420), appear::decorate<appear::taskbar>()};
 	fm.div("vert margin=15"
 		"<vert weight=52 <l1> <p1>> <weight=15>"
@@ -58,7 +60,6 @@ int main()
 
 	progs.push_back(make_pair<bool, unique_ptr<progress_ex>>(true, make_unique<progress_ex>(fm)));
 	progs.back().second->color_preset(progress_ex::color_presets::brown);
-	progs.back().second->text_mode(progress_ex::text_modes::caption);
 	fm["p4"] << *progs.back().second;
 
 	label l5{fm, "'orange' color preset, 'caption' text mode:"};
@@ -68,7 +69,6 @@ int main()
 
 	progs.push_back(make_pair<bool, unique_ptr<progress_ex>>(true, make_unique<progress_ex>(fm)));
 	progs.back().second->color_preset(progress_ex::color_presets::orange);
-	progs.back().second->text_mode(progress_ex::text_modes::caption);
 	progs.back().second->text_contrast(false);
 	progs.back().second->caption("text contrast off");
 	fm["p5"] << *progs.back().second;
@@ -79,7 +79,6 @@ int main()
 	fm["l6"] << l6;
 
 	progs.push_back(make_pair<bool, unique_ptr<progress_ex>>(true, make_unique<progress_ex>(fm)));
-	progs.back().second->text_mode(progress_ex::text_modes::caption);
 	progs.back().second->caption("nana colors (default)");
 	fm["p6"] << *progs.back().second;
 
